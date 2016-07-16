@@ -1,0 +1,4 @@
+add_executable(led_driver_test_app led_driver_test.c)
+target_link_libraries(led_driver_test_app led Unity)
+add_test(led_driver_test led_driver_test_app)
+enable_testing()
