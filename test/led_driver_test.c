@@ -89,7 +89,7 @@ TEST(LED_Driver, LED_Memory_Is_Not_Readable)
     TEST_ASSERT_EQUAL_HEX16(0x80, leds);
 }
 
-TEST(LED_Driver, Uppder_And_Lower_Bounds)
+TEST(LED_Driver, Upper_And_Lower_Bounds)
 {
     led_turn_on(1);
     led_turn_on(16);
@@ -154,3 +154,10 @@ TEST(LED_Driver, LED_Is_Off)
     TEST_ASSERT_FALSE(led_is_off(1));
 }
 
+TEST(LED_Driver, Turn_Off_Multiple_LEDs)
+{
+    led_turn_on_all();
+    led_turn_off(9);
+    led_turn_off(8);
+    TEST_ASSERT_EQUAL((~0x180) & 0xffff, leds);
+}
