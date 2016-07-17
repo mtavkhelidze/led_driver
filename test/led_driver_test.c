@@ -59,3 +59,11 @@ TEST(LED_Driver, Turn_Off_LED_One)
     led_turn_off(1);
     TEST_ASSERT_EQUAL_HEX16(0, leds);
 }
+
+TEST(LED_Driver, Turn_On_Multiple_LEDs)
+{
+    led_turn_on(8);
+    led_turn_on(9);
+    TEST_ASSERT_EQUAL_HEX16(0x180, leds);
+}
+
