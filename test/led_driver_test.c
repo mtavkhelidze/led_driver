@@ -27,6 +27,8 @@
 #include <unity_fixture.h>
 #include <led_driver.h>
 
+#include <runtime_error_mock.h>
+
 TEST_GROUP(LED_Driver);
 
 static uint16_t leds;
@@ -120,4 +122,12 @@ TEST(LED_Driver, Out_Of_Bounds_Turn_Off_Does_No_Harm)
     led_turn_off(17);
     led_turn_off(100);
     TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
+}
+
+TEST(LED_Driver, Out_Of_Bounds_Produces_Error)
+{
+    led_turn_on(-1);
+    TEST_ASSERT_EQUAL_STRING("LED Driver: out of bounds LED number",
+                             runtime_error_mock_get_last_error());
+    TEST_ASSERT_EQUAL(-1, runtime_error_mock_get_last_param());
 }
