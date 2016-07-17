@@ -138,3 +138,17 @@ TEST(LED_Driver, LED_Is_On)
     led_turn_on(11);
     TEST_ASSERT_TRUE(led_is_on(11));
 }
+
+TEST(LED_Driver, Out_Of_Bounds_LED_Is_Off)
+{
+    TEST_ASSERT_FALSE(led_is_on(-1));
+    TEST_ASSERT_FALSE(led_is_on(17));
+}
+
+TEST(LED_Driver, LED_Is_Off)
+{
+    TEST_ASSERT_TRUE(led_is_off(1));
+    led_turn_on(1);
+    TEST_ASSERT_FALSE(led_is_off(1));
+}
+

@@ -65,5 +65,12 @@ void led_turn_on_all()
 
 int led_is_on(lednum)
 {
-    return _ledsimage & (_led_num_to_bit(lednum));
+    if(_is_legal(lednum))
+        return _ledsimage & (_led_num_to_bit(lednum));
+    return 0;
+}
+
+int led_is_off(lednum)
+{
+    return !led_is_on(lednum);
 }

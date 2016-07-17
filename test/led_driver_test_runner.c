@@ -14,4 +14,6 @@ TEST_GROUP_RUNNER(LED_Driver)
     RUN_TEST_CASE(LED_Driver, Out_Of_Bounds_Turn_Off_Does_No_Harm);
     RUN_TEST_CASE(LED_Driver, Out_Of_Bounds_Produces_Error);
     RUN_TEST_CASE(LED_Driver, LED_Is_On);
+    RUN_TEST_CASE(LED_Driver, Out_Of_Bounds_LED_Is_Off);
+    RUN_TEST_CASE(LED_Driver, LED_Is_On);
 }
