@@ -24,17 +24,27 @@
  *
  */
 
-#include <unity.h>
+#include <unity_fixture.h>
 #include <led_driver.h>
 
-void LED_Off_After_Create(void)
+TEST_GROUP(LED_Driver);
+
+TEST_SETUP(LED_Driver)
+{
+}
+
+TEST_TEAR_DOWN(LED_Driver)
+{
+}
+
+TEST(LED_Driver, LED_Off_After_Create)
 {
     uint16_t leds = 0xffff;
     led_init(&leds);
     TEST_ASSERT_EQUAL_HEX16(0, leds);
 }
 
-void Turn_On_LED_One(void)
+TEST(LED_Driver, Turn_On_LED_One)
 {
     uint16_t leds;
     led_init(&leds);
@@ -42,22 +52,11 @@ void Turn_On_LED_One(void)
     TEST_ASSERT_EQUAL_HEX16(1, leds);
 }
 
-void Turn_Off_LED_One(void)
+TEST(LED_Driver, Turn_Off_LED_One)
 {
     uint16_t leds;
     led_init(&leds);
     led_turn_on(1);
     led_turn_off(1);
     TEST_ASSERT_EQUAL_HEX16(0, leds);
-}
-
-int main(void)
-{
-    UNITY_BEGIN();
-
-    RUN_TEST(LED_Off_After_Create);
-    RUN_TEST(Turn_On_LED_One);
-    RUN_TEST(Turn_Off_LED_One);
-
-    return UNITY_END();
 }
