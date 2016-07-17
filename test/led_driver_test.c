@@ -86,3 +86,38 @@ TEST(LED_Driver, LED_Memory_Is_Not_Readable)
     led_turn_on(8);
     TEST_ASSERT_EQUAL_HEX16(0x80, leds);
 }
+
+TEST(LED_Driver, Uppder_And_Lower_Bounds)
+{
+    led_turn_on(1);
+    led_turn_on(16);
+    TEST_ASSERT_EQUAL_HEX16(0x8001, leds);
+}
+
+TEST(LED_Driver, Out_Of_Bounds_Change_Nothing)
+{
+    led_turn_on(-1);
+    led_turn_on(0);
+    led_turn_on(17);
+    led_turn_on(100);
+    TEST_ASSERT_EQUAL_HEX16(0, leds);
+}
+
+TEST(LED_Driver, Out_Of_Bounds_Turn_On_Does_No_Harm)
+{
+    led_turn_on(-1);
+    led_turn_on(0);
+    led_turn_on(17);
+    led_turn_on(100);
+    TEST_ASSERT_EQUAL_HEX16(0, leds);
+}
+
+TEST(LED_Driver, Out_Of_Bounds_Turn_Off_Does_No_Harm)
+{
+    led_turn_on_all();
+    led_turn_off(-1);
+    led_turn_off(0);
+    led_turn_off(17);
+    led_turn_off(100);
+    TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
+}

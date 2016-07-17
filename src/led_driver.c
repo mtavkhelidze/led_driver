@@ -28,14 +28,18 @@ void led_init(uint16_t *led)
 
 void led_turn_on(int lednum)
 {
-    _ledsimage |= _led_num_to_bit(lednum);
-    _update_hardware();
+    if(lednum > 0 && lednum <= 16) {
+        _ledsimage |= _led_num_to_bit(lednum);
+        _update_hardware();
+    }
 }
 
 void led_turn_off(int lednum)
 {
-    _ledsimage &= ~(_led_num_to_bit(lednum));
-    _update_hardware();
+    if(lednum > 0 && lednum <= 16) {
+        _ledsimage &= ~(_led_num_to_bit(lednum));
+        _update_hardware();
+    }
 }
 
 void led_turn_on_all()
