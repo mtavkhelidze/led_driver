@@ -29,8 +29,11 @@
 
 TEST_GROUP(LED_Driver);
 
+static uint16_t leds;
+
 TEST_SETUP(LED_Driver)
 {
+    led_init(&leds);
 }
 
 TEST_TEAR_DOWN(LED_Driver)
@@ -46,16 +49,12 @@ TEST(LED_Driver, LED_Off_After_Create)
 
 TEST(LED_Driver, Turn_On_LED_One)
 {
-    uint16_t leds;
-    led_init(&leds);
     led_turn_on(1);
     TEST_ASSERT_EQUAL_HEX16(1, leds);
 }
 
 TEST(LED_Driver, Turn_Off_LED_One)
 {
-    uint16_t leds;
-    led_init(&leds);
     led_turn_on(1);
     led_turn_off(1);
     TEST_ASSERT_EQUAL_HEX16(0, leds);
