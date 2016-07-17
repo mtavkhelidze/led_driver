@@ -7,29 +7,39 @@ enum {
 };
 
 static uint16_t *_leds;
+static uint16_t _ledsimage;
 
-static _led_num_to_bit(int lednum)
+static int _led_num_to_bit(int lednum)
 {
     return 1 << (lednum - 1);
+}
+
+static void _update_hardware(void)
+{
+    *_leds = _ledsimage;
 }
 
 void led_init(uint16_t *led)
 {
     _leds = led;
-    *_leds = ALL_LEDS_OFF;
+    _ledsimage = ALL_LEDS_OFF;
+    _update_hardware();
 }
 
 void led_turn_on(int lednum)
 {
-    *_leds |= _led_num_to_bit(lednum);
+    _ledsimage |= _led_num_to_bit(lednum);
+    _update_hardware();
 }
 
 void led_turn_off(int lednum)
 {
-    *_leds &= ~(_led_num_to_bit(lednum));
+    _ledsimage &= ~(_led_num_to_bit(lednum));
+    _update_hardware();
 }
 
 void led_turn_on_all()
 {
-    *_leds = ALL_LEDS_ON;
+    _ledsimage = ALL_LEDS_ON;
+    _update_hardware();
 }

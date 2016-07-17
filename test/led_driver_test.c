@@ -79,3 +79,10 @@ TEST(LED_Driver, Turn_All_LEDs_On)
     led_turn_on_all();
     TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
 }
+
+TEST(LED_Driver, LED_Memory_Is_Not_Readable)
+{
+    leds = 0xffff;
+    led_turn_on(8);
+    TEST_ASSERT_EQUAL_HEX16(0x80, leds);
+}
