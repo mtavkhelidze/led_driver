@@ -9,6 +9,11 @@ enum {
     ALL_LEDS_OFF = ~ALL_LEDS_ON
 };
 
+enum {
+    FIRST_LED = 1,
+    LAST_LED = 16
+};
+
 static uint16_t *_leds;
 static uint16_t _ledsimage;
 
@@ -22,6 +27,11 @@ static void _update_hardware(void)
     *_leds = _ledsimage;
 }
 
+static int _is_legal(int lednum)
+{
+    return (lednum >= FIRST_LED) && (lednum <= LAST_LED);
+}
+
 void led_init(uint16_t *led)
 {
     _leds = led;
@@ -31,7 +41,7 @@ void led_init(uint16_t *led)
 
 void led_turn_on(int lednum)
 {
-    if(lednum >= 0 && lednum <= 16) {
+    if(_is_legal(lednum)) {
         _ledsimage |= _led_num_to_bit(lednum);
         _update_hardware();
     } else
@@ -40,7 +50,7 @@ void led_turn_on(int lednum)
 
 void led_turn_off(int lednum)
 {
-    if(lednum > 0 && lednum <= 16) {
+    if(_is_legal(lednum)) {
         _ledsimage &= ~(_led_num_to_bit(lednum));
         _update_hardware();
     } else
