@@ -6,6 +6,6 @@ TEST_GROUP_RUNNER(LED_Driver)
     RUN_TEST_CASE(LED_Driver, Turn_On_LED_One);
     RUN_TEST_CASE(LED_Driver, Turn_Off_LED_One);
     RUN_TEST_CASE(LED_Driver, Turn_On_Multiple_LEDs);
-    /* RUN_TEST_CASE(LED_Driver, Turn_Off_Any_LED); */
+    RUN_TEST_CASE(LED_Driver, Turn_Off_Any_LED);
     RUN_TEST_CASE(LED_Driver, Turn_All_LEDs_On);
 }

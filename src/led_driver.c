@@ -26,7 +26,7 @@ void led_turn_on(int lednum)
 
 void led_turn_off(int lednum)
 {
-    *_leds = 0;
+    *_leds &= ~(_led_num_to_bit(lednum));
 }
 
 void led_turn_on_all()

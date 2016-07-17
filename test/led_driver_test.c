@@ -67,13 +67,12 @@ TEST(LED_Driver, Turn_On_Multiple_LEDs)
     TEST_ASSERT_EQUAL_HEX16(0x180, leds);
 }
 
-/* TEST_IGNORE(LED_Driver, Turn_Off_Any_LED) */
-/* { */
-/*     led_turn_on(9); */
-/*     led_turn_on(8); */
-/*     led_turn_off(9); */
-/*     TEST_ASSERT_EQUAL_HEX16(0x100, leds); */
-/* } */
+TEST(LED_Driver, Turn_Off_Any_LED)
+{
+    led_turn_on_all();
+    led_turn_off(8);
+    TEST_ASSERT_EQUAL_HEX16(0xff7f, leds);
+}
 
 TEST(LED_Driver, Turn_All_LEDs_On)
 {
