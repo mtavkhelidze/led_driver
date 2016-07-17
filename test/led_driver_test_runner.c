@@ -18,4 +18,5 @@ TEST_GROUP_RUNNER(LED_Driver)
     RUN_TEST_CASE(LED_Driver, Out_Of_Bounds_LED_Is_Off);
     RUN_TEST_CASE(LED_Driver, LED_Is_Off);
     RUN_TEST_CASE(LED_Driver, Turn_Off_Multiple_LEDs);
+    RUN_TEST_CASE(LED_Driver, Turn_All_Off);
 }

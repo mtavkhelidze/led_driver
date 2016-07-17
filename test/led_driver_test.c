@@ -159,5 +159,12 @@ TEST(LED_Driver, Turn_Off_Multiple_LEDs)
     led_turn_on_all();
     led_turn_off(9);
     led_turn_off(8);
-    TEST_ASSERT_EQUAL((~0x180) & 0xffff, leds);
+    TEST_ASSERT_EQUAL_HEX16((~0x180) & 0xffff, leds);
+}
+
+TEST(LED_Driver, Turn_All_Off)
+{
+    led_turn_on_all();
+    led_turn_off_all();
+    TEST_ASSERT_EQUAL_HEX16(0, leds);
 }

@@ -74,3 +74,9 @@ int led_is_off(lednum)
 {
     return !led_is_on(lednum);
 }
+
+void led_turn_off_all()
+{
+    _ledsimage = ALL_LEDS_OFF;
+    _update_hardware();
+}
