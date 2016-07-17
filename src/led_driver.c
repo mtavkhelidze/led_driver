@@ -23,3 +23,8 @@ void led_turn_off(int lednum)
 {
     *_leds = 0;
 }
+
+void led_turn_on_all()
+{
+    *_leds = 0xffff;
+}
