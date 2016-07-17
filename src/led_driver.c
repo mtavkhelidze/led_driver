@@ -65,5 +65,5 @@ void led_turn_on_all()
 
 int led_is_on(lednum)
 {
-    return 0;
+    return _ledsimage & (_led_num_to_bit(lednum));
 }
