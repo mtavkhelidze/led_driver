@@ -131,3 +131,10 @@ TEST(LED_Driver, Out_Of_Bounds_Produces_Error)
                              runtime_error_mock_get_last_error());
     TEST_ASSERT_EQUAL(-1, runtime_error_mock_get_last_param());
 }
+
+TEST(LED_Driver, LED_Is_On)
+{
+    TEST_ASSERT_FALSE(led_is_on(11));
+    led_turn_on(11);
+    TEST_ASSERT_TRUE(led_is_on(11));
+}

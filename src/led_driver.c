@@ -62,3 +62,8 @@ void led_turn_on_all()
     _ledsimage = ALL_LEDS_ON;
     _update_hardware();
 }
+
+int led_is_on(lednum)
+{
+    return 0;
+}
