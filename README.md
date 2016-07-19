@@ -24,6 +24,6 @@ $ make
 To test, all the above plus:
 
 ```
-$ ctest -v
+$ test/led_driver_test_app -v
 ```
 
