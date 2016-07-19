@@ -22,5 +22,6 @@ TEST_GROUP_RUNNER(LED_Driver)
     RUN_TEST_CASE(LED_Driver, Set_Inverted);
     RUN_TEST_CASE(LED_Driver, Set_Normal);
     RUN_TEST_CASE(LED_Driver, Inverted_Toggle);
+    RUN_TEST_CASE(LED_Driver, Set_Reversed_On);
 }
 

@@ -167,3 +167,14 @@ TEST(LED_Driver, Inverted_Toggle)
     led_turn_on(9);
     TEST_ASSERT_EQUAL_HEX16(0xfefe, leds);
 }
+
+/* Reversed pins on the board. 16 -> 1, 15 -> 2, 14 -> 3, etc..
+ **/
+
+TEST(LED_Driver, Set_Reversed_On)
+{
+    led_set_reversed();
+    led_turn_on(1);
+    led_turn_on(9);
+    TEST_ASSERT_EQUAL_HEX16(0x8080, leds);
+}
