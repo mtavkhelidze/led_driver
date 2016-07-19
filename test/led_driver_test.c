@@ -1,29 +1,3 @@
-/**
- * LED Driver test
- *
- * This file is a part of project name.
- *
- * Copyright (c) 2016 Misha Tavkhelidze <misha.tavkhelidze@gmail.com>
- */
-
-/**
- * All 16 LEDs are off after the driver is initialized. A single LED can be
- * turned on.
- * 
- * A single LED can be turned off.
- *
- * Multiple LEDs can be turned on/off .
- *
- * Turn on all LEDs
- *
- * Turn off all LEDs
- *
- * Query LED state
- *
- * Check boundary values Check out-of-bounds values
- *
- */
-
 #include <unity_fixture.h>
 #include <led_driver.h>
 
@@ -42,7 +16,7 @@ TEST_TEAR_DOWN(LED_Driver)
 {
 }
 
-TEST(LED_Driver, LED_Off_After_Create)
+TEST(LED_Driver, LED_Off_After_Init)
 {
     uint16_t leds = 0xffff;
     led_init(&leds);
@@ -167,4 +141,29 @@ TEST(LED_Driver, Turn_All_Off)
     led_turn_on_all();
     led_turn_off_all();
     TEST_ASSERT_EQUAL_HEX16(0, leds);
+}
+
+/* Inverted LED logic support, i.e. when pin is 1 LED is off and vice
+ * versa (exercise to Chapter 4).
+ */
+    
+TEST(LED_Driver, Set_Inverted)
+{
+    led_set_inverted();
+    TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
+}
+
+TEST(LED_Driver, Set_Normal)
+{
+    led_set_inverted();
+    led_set_normal();
+    TEST_ASSERT_EQUAL_HEX16(0x0, leds);
+}
+
+TEST(LED_Driver, Inverted_Toggle)
+{
+    led_set_inverted();
+    led_turn_on(1);
+    led_turn_on(9);
+    TEST_ASSERT_EQUAL_HEX16(0xfefe, leds);
 }

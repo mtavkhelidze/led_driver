@@ -8,5 +8,7 @@ void led_turn_on_all();
 int led_is_on(int lednum);
 int led_is_off(int lednum);
 void led_turn_off_all();
+void led_set_inverted(void);
+void led_set_normal(void);
 
 #endif /* _LED_DRIVE_H */
