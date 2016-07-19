@@ -36,6 +36,10 @@ void led_init(uint16_t *led, int inverted)
 {
     _leds = led;
     _ledsimage = ALL_LEDS_OFF;
+
+    if(inverted)
+        _ledsimage = ALL_LEDS_ON;
+    
     _update_hardware();
 }
 

@@ -39,7 +39,7 @@ TEST_TEAR_DOWN(LED_Driver)
 {
 }
 
-TEST(LED_Driver, LED_Off_After_Create)
+TEST(LED_Driver, LED_Off_After_Init)
 {
     uint16_t leds = 0xffff;
     led_init(&leds, NORMAL);
@@ -184,4 +184,11 @@ TEST_SETUP(LED_Driver_Inverted)
 TEST_TEAR_DOWN(LED_Driver_Inverted)
 {
     
+}
+
+TEST(LED_Driver_Inverted, LED_Off_After_Init)
+{
+    uint16_t leds = 0x0;
+    led_init(&leds, INVERTED);
+    TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
 }
