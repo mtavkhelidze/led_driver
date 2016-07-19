@@ -25,9 +25,14 @@ TEST_GROUP(LED_Driver);
 
 static uint16_t leds;
 
+enum {
+    NORMAL = 0,
+    INVERTED = ~NORMAL
+};
+
 TEST_SETUP(LED_Driver)
 {
-    led_init(&leds);
+    led_init(&leds, NORMAL);
 }
 
 TEST_TEAR_DOWN(LED_Driver)
@@ -37,7 +42,7 @@ TEST_TEAR_DOWN(LED_Driver)
 TEST(LED_Driver, LED_Off_After_Create)
 {
     uint16_t leds = 0xffff;
-    led_init(&leds);
+    led_init(&leds, NORMAL);
     TEST_ASSERT_EQUAL_HEX16(0, leds);
 }
 
@@ -165,13 +170,15 @@ TEST(LED_Driver, Turn_All_Off)
  * Driver with inverted logic, i.e. when pin is 1 LED is off and vice
  * versa.
  *
+ * Excercise to Chapter 4
+ *
  */ 
 
 TEST_GROUP(LED_Driver_Inverted);
 
 TEST_SETUP(LED_Driver_Inverted)
 {
-    led_init(&leds);
+    led_init(&leds, INVERTED);
 }
 
 TEST_TEAR_DOWN(LED_Driver_Inverted)

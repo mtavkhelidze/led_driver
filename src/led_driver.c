@@ -32,7 +32,7 @@ static int _is_legal(int lednum)
     return (lednum >= FIRST_LED) && (lednum <= LAST_LED);
 }
 
-void led_init(uint16_t *led)
+void led_init(uint16_t *led, int inverted)
 {
     _leds = led;
     _ledsimage = ALL_LEDS_OFF;
