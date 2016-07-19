@@ -26,8 +26,9 @@ static int _led_num_to_bit(int lednum)
 static void _update_hardware(void)
 {
     if(_inverted)
-        _ledsimage = ~_ledsimage;
-    *_leds = _ledsimage;
+        *_leds = ~_ledsimage;
+    else
+        *_leds = _ledsimage;
 }
 
 static int _is_legal(int lednum)
@@ -88,5 +89,11 @@ void led_turn_off_all(void)
 void led_set_inverted(void)
 {
     _inverted = 1;
+    _update_hardware();
+}
+
+void led_set_normal(void)
+{
+    _inverted = 0;
     _update_hardware();
 }
