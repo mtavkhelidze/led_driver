@@ -153,17 +153,50 @@ TEST(LED_Driver, Set_Inverted)
     TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
 }
 
-TEST(LED_Driver, Set_Normal)
-{
-    led_set_inverted();
-    led_set_normal();
-    TEST_ASSERT_EQUAL_HEX16(0x0, leds);
-}
-
 TEST(LED_Driver, Inverted_Toggle)
 {
     led_set_inverted();
     led_turn_on(1);
     led_turn_on(9);
     TEST_ASSERT_EQUAL_HEX16(0xfefe, leds);
+}
+
+/* Reversed pins on the board. 16 -> 1, 15 -> 2, 14 -> 3, etc..
+ **/
+
+TEST(LED_Driver, Set_Reversed_On)
+{
+    led_set_reversed();
+    led_turn_on(1);
+    led_turn_on(9);
+    TEST_ASSERT_EQUAL_HEX16(0x8080, leds);
+}
+
+TEST(LED_Driver, Set_Reversed_Off)
+{
+    led_turn_on_all();
+    led_set_reversed();
+    led_turn_off(1);
+    led_turn_off(9);
+    TEST_ASSERT_EQUAL_HEX16(0x7f7f, leds);
+}
+
+TEST(LED_Driver, Set_Reversed_On_Off_Inverted)
+{
+    led_set_inverted();
+    led_set_reversed();
+    led_turn_on_all();
+    led_turn_off(1);
+    led_turn_off(9);
+    TEST_ASSERT_EQUAL_HEX16(0x8080, leds);
+
+}
+
+TEST(LED_Driver, Reset)
+{
+    led_set_inverted();
+    led_turn_on(1);
+    TEST_ASSERT_EQUAL_HEX16(0x8000, leds);
+    led_reset();
+    TEST_ASSERT_EQUAL_HEX16(0x0000, leds);
 }

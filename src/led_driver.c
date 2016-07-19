@@ -17,9 +17,12 @@ enum {
 static uint16_t *_leds;
 static uint16_t _ledsimage;
 static int _inverted;
+static int _reversed;
 
 static int _led_num_to_bit(int lednum)
 {
+    if(_reversed)
+        lednum = 17 - lednum;
     return 1 << (lednum - 1);
 }
 
@@ -39,9 +42,7 @@ static int _is_legal(int lednum)
 void led_init(uint16_t *led)
 {
     _leds = led;
-    _ledsimage = ALL_LEDS_OFF;
-    _inverted = 0;
-    _update_hardware();
+    led_reset();
 }
 
 void led_turn_on(int lednum)
@@ -92,8 +93,16 @@ void led_set_inverted(void)
     _update_hardware();
 }
 
-void led_set_normal(void)
+void led_set_reversed(void)
 {
+    _reversed = 1;
+    _update_hardware();
+}
+
+void led_reset(void)
+{
+    _reversed = 0;
     _inverted = 0;
+    _ledsimage = ALL_LEDS_OFF;
     _update_hardware();
 }
