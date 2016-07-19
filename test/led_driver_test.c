@@ -163,3 +163,11 @@ TEST(LED_Driver, Set_Normal)
     led_set_normal();
     TEST_ASSERT_EQUAL_HEX16(0x0, leds);
 }
+
+TEST(LED_Driver, Inverted_Toggle)
+{
+    led_set_inverted();
+    led_turn_on(1);
+    led_turn_on(9);
+    TEST_ASSERT_EQUAL_HEX16(0xfefe, leds);
+}
