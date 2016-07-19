@@ -143,14 +143,10 @@ TEST(LED_Driver, Turn_All_Off)
     TEST_ASSERT_EQUAL_HEX16(0, leds);
 }
 
-/*
- * Driver with inverted logic, i.e. when pin is 1 LED is off and vice
- * versa.
- *
- * Excercise to Chapter 4
- *
- */ 
-
+/* Inverted LED logic support, i.e. when pin is 1 LED is off and vice
+ * versa (exercise to Chapter 4).
+ */
+    
 TEST(LED_Driver, Set_Inverted)
 {
     led_set_inverted();
