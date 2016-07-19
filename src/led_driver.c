@@ -21,6 +21,8 @@ static int _reversed;
 
 static int _led_num_to_bit(int lednum)
 {
+    if(_reversed)
+        lednum = 17 - lednum;
     return 1 << (lednum - 1);
 }
 
@@ -49,8 +51,6 @@ void led_init(uint16_t *led)
 void led_turn_on(int lednum)
 {
     if(_is_legal(lednum)) {
-        if(_reversed)
-            lednum = 17 - lednum;
         _ledsimage |= _led_num_to_bit(lednum);
         _update_hardware();
     } else

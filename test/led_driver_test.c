@@ -178,3 +178,23 @@ TEST(LED_Driver, Set_Reversed_On)
     led_turn_on(9);
     TEST_ASSERT_EQUAL_HEX16(0x8080, leds);
 }
+
+TEST(LED_Driver, Set_Reversed_Off)
+{
+    led_turn_on_all();
+    led_set_reversed();
+    led_turn_off(1);
+    led_turn_off(9);
+    TEST_ASSERT_EQUAL_HEX16(0x7f7f, leds);
+}
+
+TEST(LED_Driver, Set_Reversed_On_Off_Inverted)
+{
+    led_set_inverted();
+    led_set_reversed();
+    led_turn_on_all();
+    led_turn_off(1);
+    led_turn_off(9);
+    TEST_ASSERT_EQUAL_HEX16(0x8080, leds);
+
+}
