@@ -42,10 +42,7 @@ static int _is_legal(int lednum)
 void led_init(uint16_t *led)
 {
     _leds = led;
-    _ledsimage = ALL_LEDS_OFF;
-    _inverted = 0;
-    _reversed = 0;
-    _update_hardware();
+    led_reset();
 }
 
 void led_turn_on(int lednum)
@@ -96,14 +93,16 @@ void led_set_inverted(void)
     _update_hardware();
 }
 
-void led_set_normal(void)
-{
-    _inverted = 0;
-    _update_hardware();
-}
-
 void led_set_reversed(void)
 {
     _reversed = 1;
+    _update_hardware();
+}
+
+void led_reset(void)
+{
+    _reversed = 0;
+    _inverted = 0;
+    _ledsimage = ALL_LEDS_OFF;
     _update_hardware();
 }
