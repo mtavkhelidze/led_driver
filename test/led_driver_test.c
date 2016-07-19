@@ -1,12 +1,4 @@
 /**
- * LED Driver test
- *
- * This file is a part of project name.
- *
- * Copyright (c) 2016 Misha Tavkhelidze <misha.tavkhelidze@gmail.com>
- */
-
-/**
  * All 16 LEDs are off after the driver is initialized. A single LED can be
  * turned on.
  * 
@@ -167,4 +159,22 @@ TEST(LED_Driver, Turn_All_Off)
     led_turn_on_all();
     led_turn_off_all();
     TEST_ASSERT_EQUAL_HEX16(0, leds);
+}
+
+/*
+ * Driver with inverted logic, i.e. when pin is 1 LED is off and vice
+ * versa.
+ *
+ */ 
+
+TEST_GROUP(LED_Driver_Inverted);
+
+TEST_SETUP(LED_Driver_Inverted)
+{
+    led_init(&leds);
+}
+
+TEST_TEAR_DOWN(LED_Driver_Inverted)
+{
+    
 }
