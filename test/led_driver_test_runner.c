@@ -19,10 +19,6 @@ TEST_GROUP_RUNNER(LED_Driver)
     RUN_TEST_CASE(LED_Driver, LED_Is_Off);
     RUN_TEST_CASE(LED_Driver, Turn_Off_Multiple_LEDs);
     RUN_TEST_CASE(LED_Driver, Turn_All_Off);
-}
-
-TEST_GROUP_RUNNER(LED_Driver_Inverted)
-{
-    RUN_TEST_CASE(LED_Driver_Inverted, LED_Off_After_Init);
+    RUN_TEST_CASE(LED_Driver, Set_Inverted);
 }
 

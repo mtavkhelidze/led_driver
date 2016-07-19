@@ -1,21 +1,3 @@
-/**
- * All 16 LEDs are off after the driver is initialized. A single LED can be
- * turned on.
- * 
- * A single LED can be turned off.
- *
- * Multiple LEDs can be turned on/off .
- *
- * Turn on all LEDs
- *
- * Turn off all LEDs
- *
- * Query LED state
- *
- * Check boundary values Check out-of-bounds values
- *
- */
-
 #include <unity_fixture.h>
 #include <led_driver.h>
 
@@ -25,14 +7,9 @@ TEST_GROUP(LED_Driver);
 
 static uint16_t leds;
 
-enum {
-    NORMAL = 0,
-    INVERTED = ~NORMAL
-};
-
 TEST_SETUP(LED_Driver)
 {
-    led_init(&leds, NORMAL);
+    led_init(&leds);
 }
 
 TEST_TEAR_DOWN(LED_Driver)
@@ -42,7 +19,7 @@ TEST_TEAR_DOWN(LED_Driver)
 TEST(LED_Driver, LED_Off_After_Init)
 {
     uint16_t leds = 0xffff;
-    led_init(&leds, NORMAL);
+    led_init(&leds);
     TEST_ASSERT_EQUAL_HEX16(0, leds);
 }
 
@@ -174,21 +151,8 @@ TEST(LED_Driver, Turn_All_Off)
  *
  */ 
 
-TEST_GROUP(LED_Driver_Inverted);
-
-TEST_SETUP(LED_Driver_Inverted)
+TEST(LED_Driver, Set_Inverted)
 {
-    led_init(&leds, INVERTED);
-}
-
-TEST_TEAR_DOWN(LED_Driver_Inverted)
-{
-    
-}
-
-TEST(LED_Driver_Inverted, LED_Off_After_Init)
-{
-    uint16_t leds = 0x0;
-    led_init(&leds, INVERTED);
+    led_set_inverted();
     TEST_ASSERT_EQUAL_HEX16(0xffff, leds);
 }
